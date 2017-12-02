@@ -23,6 +23,10 @@ class BooksApp extends React.Component {
     })
   }
 
+  updateShelf = () => {
+
+  }
+
   render() {
     const { books } = this.state
     const bookshelf = [
