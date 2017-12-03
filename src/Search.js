@@ -22,6 +22,7 @@ class Search extends Component {
             if(books.error) {
                 books = []
             }
+            books.map(_ => _.shelf = 'none')
             this.setState({ books })
             // console.log(this.state.books)
         })
