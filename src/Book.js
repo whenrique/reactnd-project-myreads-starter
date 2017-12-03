@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const Book = ({ id, thumb, shelf, title, authors = [] }) => {
+const Book = ({ bookInfo, updateShelf }) => {
     return (
-        <li key={id}>
+        <li>
             <div className="book">
                 <div className="book-top">
                     <div
@@ -10,11 +11,12 @@ const Book = ({ id, thumb, shelf, title, authors = [] }) => {
                         style={{
                             width: 128,
                             height: 193,
-                            backgroundImage: `url(${thumb})`
+                            backgroundImage: `url(${bookInfo.imageLinks.thumbnail})`
                         }}
                     ></div>
                     <div className="book-shelf-changer">
-                        <select defaultValue={shelf}>
+                        <select defaultValue={bookInfo.shelf} 
+                        onChange={(e) => updateShelf(bookInfo, e.target.value)}>
                             <option value="none" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
@@ -23,13 +25,18 @@ const Book = ({ id, thumb, shelf, title, authors = [] }) => {
                         </select>
                     </div>
                 </div>
-                <div className="book-title">{title}</div>
-                {authors.map(author => (
+                <div className="book-title">{bookInfo.title}</div>
+                {bookInfo.authors.map(author => (
                     <div className="book-authors" key={author}>{author}</div>
                 ))}
             </div>
         </li>
     )
+}
+
+Book.prototype = {
+    bookInfo: PropTypes.object.isRequired,
+    updateShelf: PropTypes.func.isRequired
 }
 
 export default Book
