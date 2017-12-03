@@ -11,7 +11,7 @@ const Book = ({ bookInfo, updateShelf }) => {
                         style={{
                             width: 128,
                             height: 193,
-                            backgroundImage: `url(${bookInfo.imageLinks.thumbnail})`
+                            backgroundImage: `url(${bookInfo.imageLinks ? bookInfo.imageLinks.thumbnail : 'http://bit.ly/2BFHV2l'})`,
                         }}
                     ></div>
                     <div className="book-shelf-changer">
@@ -26,9 +26,9 @@ const Book = ({ bookInfo, updateShelf }) => {
                     </div>
                 </div>
                 <div className="book-title">{bookInfo.title}</div>
-                {bookInfo.authors.map(author => (
+                {bookInfo.authors ? bookInfo.authors.map(author => (
                     <div className="book-authors" key={author}>{author}</div>
-                ))}
+                )) : ''}
             </div>
         </li>
     )
