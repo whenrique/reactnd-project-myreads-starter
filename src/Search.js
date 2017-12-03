@@ -24,7 +24,6 @@ class Search extends Component {
             }
             books.map(_ => _.shelf = 'none')
             this.setState({ books })
-            // console.log(this.state.books)
         })
     }
 
